@@ -52,22 +52,22 @@ with st.sidebar.form(key='tech_support'):
     if st.form_submit_button("Contact us", type="secondary", use_container_width=True):
         st.write("Submitted!")
 
-components.html("""
-            <html>
-            <head>
-            </head>
+# components.html("""
+#             <html>
+#             <head>
+#             </head>
 
-            <iframe height="700" style="width: 100%;" scrolling="no" title="Spain OpenStreetMap" src="https://codepen.io/nqueby/embed/dygKrdm?default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-            See the Pen <a href="https://codepen.io/nqueby/pen/dygKrdm">
-            Spain OpenStreetMap</a> by Nathanya Queby Satriani (<a href="https://codepen.io/nqueby">@nqueby</a>)
-            on <a href="https://codepen.io">CodePen</a>.
-            </iframe>
+#             <iframe height="700" style="width: 100%;" scrolling="no" title="Spain OpenStreetMap" src="https://codepen.io/nqueby/embed/dygKrdm?default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+#             See the Pen <a href="https://codepen.io/nqueby/pen/dygKrdm">
+#             Spain OpenStreetMap</a> by Nathanya Queby Satriani (<a href="https://codepen.io/nqueby">@nqueby</a>)
+#             on <a href="https://codepen.io">CodePen</a>.
+#             </iframe>
 
-            </html>
-            """,
-            height=700,
-            scrolling=True
-            )
+#             </html>
+#             """,
+#             height=700,
+#             scrolling=True
+#             )
 
 # Create a map centered on Spain
 m = fol.Map(location=[40.416775, -3.703790], zoom_start=6)
