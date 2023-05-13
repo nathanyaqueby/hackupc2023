@@ -23,7 +23,7 @@ components.html("""
             <head>
             </head>
 
-            <iframe height="300" style="width: 100%;" scrolling="no" title="Spain OpenStreetMap" src="https://codepen.io/nqueby/embed/dygKrdm?default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+            <iframe height="700" style="width: 100%;" scrolling="no" title="Spain OpenStreetMap" src="https://codepen.io/nqueby/embed/dygKrdm?default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
             See the Pen <a href="https://codepen.io/nqueby/pen/dygKrdm">
             Spain OpenStreetMap</a> by Nathanya Queby Satriani (<a href="https://codepen.io/nqueby">@nqueby</a>)
             on <a href="https://codepen.io">CodePen</a>.
