@@ -27,11 +27,11 @@ st.markdown("""
 # st.sidebar.title("Navigation")
 
 with st.sidebar.form(key="form1"):
-    st.header("Generate a Real Estate Description")
+    st.title("Generate a Real Estate Description")
 
     # upload image(s)
-    st.subheader("Upload Image(s)")
-    uploaded_file = st.file_uploader("Choose an image...", accept_multiple_files=True)
+    # st.subheader("Upload Image(s)")
+    uploaded_file = st.file_uploader("Upload image(s)", accept_multiple_files=True)
 
     # insert house size in square meters
     # st.sidebar.subheader("Insert House Size in Square Meters")
