@@ -28,15 +28,15 @@ with st.sidebar.form(key="form1"):
 
     # insert house size in square meters
     # st.sidebar.subheader("Insert House Size in Square Meters")
-    house_size = st.number_input("House Size (in m2)", min_value=0.0, max_value=10000.0, value=0.0, step=0.1)
+    house_size = st.number_input("House Size (in m2)", min_value=0.0, max_value=10000.0, value=25.0, step=0.1)
 
     # insert number of bedrooms
     # st.sidebar.subheader("Number of Bedrooms")
-    bedrooms = st.number_input("Number of Bedrooms", min_value=0, max_value=10, value=0, step=1)
+    bedrooms = st.number_input("Number of Bedrooms", min_value=0, max_value=10, value=2, step=1)
 
     # insert number of bathrooms
     # st.sidebar.subheader("Number of Bathrooms")
-    bathrooms = st.number_input("Number of Bathrooms", min_value=0, max_value=10, value=0, step=1)
+    bathrooms = st.number_input("Number of Bathrooms", min_value=0, max_value=10, value=1, step=1)
 
     # submit button
     # st.sidebar.subheader("Generate text")
