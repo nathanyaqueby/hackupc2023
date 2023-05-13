@@ -1,12 +1,12 @@
-Province,Latitude,Longitude
-Albacete,38.9956,-1.8558
-Alicante,38.3452,-0.4810
-Almería,36.8402,-2.4679
-Álava,42.8497,-2.6726
-Asturias,43.3614,-5.8593
-Ávila,40.6564,-4.7006
+Province,Latitude,Longitude, AvgCostPerMonth
+Albacete,38.9956,-1.8558, 1_179
+Alicante,38.3452,-0.4810, 2_137
+Almería,36.8402,-2.4679, 1_241
+Álava,42.8497,-2.6726, 2_378
+Asturias,43.3614,-5.8593, 1_397
+Ávila,40.6564,-4.7006, 
 Badajoz,38.8786,-6.9707
-Barcelona,41.3851,2.1734
+Barcelona,41.3851,2.1734, 4_011
 Burgos,42.3430,-3.6969
 Cáceres,39.4762,-6.3709
 Cádiz,36.5261,-6.2875
