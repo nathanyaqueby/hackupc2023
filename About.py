@@ -6,6 +6,9 @@ st.set_page_config(page_title="MLheads",
                    layout="wide",
                    initial_sidebar_state="expanded")
 
+st.title("Real Estate Post Generator 🏠")
+st.markdown("Upload pictures of a property and our AI model will generate the perfect description based on the features in the images")
+
 clientId = "JNM4ccGiddf0pF6uIGKAD5BKyaPWKVcB"
 domain = "mlheads.us.auth0.com"
 
