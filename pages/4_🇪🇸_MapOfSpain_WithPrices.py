@@ -4,6 +4,7 @@ import streamlit.components.v1 as components
 from streamlit_extras.mention import mention
 import folium
 import leafmap.foliumap as leafmap
+from streamlit_folium import st_folium
 
 st.set_page_config(page_title="MLheads",
                    page_icon="🤯",
@@ -52,22 +53,22 @@ with st.sidebar.form(key='tech_support'):
     if st.form_submit_button("Contact us", type="secondary", use_container_width=True):
         st.write("Submitted!")
 
-# components.html("""
-#             <html>
-#             <head>
-#             </head>
+components.html("""
+            <html>
+            <head>
+            </head>
 
-#             <iframe height="700" style="width: 100%;" scrolling="no" title="Spain OpenStreetMap" src="https://codepen.io/nqueby/embed/dygKrdm?default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-#             See the Pen <a href="https://codepen.io/nqueby/pen/dygKrdm">
-#             Spain OpenStreetMap</a> by Nathanya Queby Satriani (<a href="https://codepen.io/nqueby">@nqueby</a>)
-#             on <a href="https://codepen.io">CodePen</a>.
-#             </iframe>
+            <iframe height="700" style="width: 100%;" scrolling="no" title="Spain OpenStreetMap" src="https://codepen.io/nqueby/embed/dygKrdm?default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+            See the Pen <a href="https://codepen.io/nqueby/pen/dygKrdm">
+            Spain OpenStreetMap</a> by Nathanya Queby Satriani (<a href="https://codepen.io/nqueby">@nqueby</a>)
+            on <a href="https://codepen.io">CodePen</a>.
+            </iframe>
 
-#             </html>
-#             """,
-#             height=700,
-#             scrolling=True
-#             )
+            </html>
+            """,
+            height=700,
+            scrolling=True
+            )
 
 # Set initial location to Madrid
 init_location = [40.416775, -3.703790]
@@ -95,3 +96,5 @@ barcelona_coords = [41.385064, 2.173404]
 folium.Marker(
     barcelona_coords, popup="Barcelona", tooltip="Barcelona"
 ).add_to(m)
+
+st_data = st_folium(m, width=640, height=640)
