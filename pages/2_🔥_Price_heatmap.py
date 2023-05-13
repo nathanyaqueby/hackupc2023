@@ -49,6 +49,7 @@ st.pydeck_chart(pdk.Deck(
             get_radius=200,
         ),
     ],
+    height=700
 ))
 
 # # create a list of unique areas
