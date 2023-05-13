@@ -19,7 +19,7 @@ st.title("Real estate price range heatmap 🔥")
 data = pd.read_json("preprocessed_10k.json").T
 
 chart_data = pd.DataFrame(
-   np.random.randn(1000, 2) / [50, 50] + [37.76, -122.4],
+   np.random.randn(1000, 2) / [50, 50] + [41.403706, 2.173504],
    columns=['lat', 'lon'])
 
 st.pydeck_chart(pdk.Deck(
