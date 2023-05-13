@@ -14,7 +14,7 @@ st.set_page_config(page_title="MLheads",
 
 st.title("Compare prices of cities in Spain 🇪🇸")
 
-st.sidebar.info("Explore the real estate market in Spain! Meanwhile, walk through the city of Barcelona with the OpenStreetMap.")
+st.sidebar.info("How much does it cost to live in different provinces of Spain? Click on the markers to find out!")
 
 st.markdown("""
     <style>
