@@ -12,7 +12,7 @@ st.set_page_config(page_title="MLheads",
                    layout="wide",
                    initial_sidebar_state="expanded")
 
-st.title("Compare prices of cities in Spain 🇪🇸")
+st.title("Average prices to live in provinces in Spain 🇪🇸")
 
 st.sidebar.info("How much does it cost to live in different provinces of Spain? Click on the markers to find out!")
 
@@ -54,7 +54,7 @@ with st.sidebar.form(key='tech_support'):
     if st.form_submit_button("Contact us", type="secondary", use_container_width=True):
         st.write("Submitted!")
 
-# Puts all provinces in an array
+# Puts all provinces in an array (https://www.indomio.es/en/mercado-inmobiliario/ -> Data)
 df = pd.read_csv('spainProvinces.csv')
 spainProvList = [list(row) for row in df.values]
 

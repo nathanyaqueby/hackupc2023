@@ -6,3 +6,5 @@ leafmap
 pydeck
 geopy
 streamlit-folium
+xgboost
+streamlit-shap

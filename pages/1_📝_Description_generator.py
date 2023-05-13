@@ -1,6 +1,7 @@
 import streamlit as st
 from auth0_component import login_button
 import openai
+from gradio_client import Client
 
 st.set_page_config(page_title="MLheads",
                    page_icon="🤯",
@@ -77,3 +78,10 @@ if submit:
         text_result = response['choices'][0]["text"]
     st.markdown("## Generated Text")
     st.write(f"{text_result}")
+
+    client = Client("https://tweakdoor-stabilityai-stable-diffusion-2-1.hf.space/")
+    result = client.predict(
+                    "Howdy!",	# str representing input in 'Input' Textbox component
+                    api_name="/predict"
+    )
+    print(result)
