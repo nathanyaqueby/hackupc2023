@@ -68,4 +68,4 @@ folium.Marker(
     madrid_coords, popup="Madrid", tooltip="Madrid"
 ).add_to(m)
 
-st_data = st_folium(m, width=840, height=640)
+st_data = st_folium(m, width=1440, height=640)
