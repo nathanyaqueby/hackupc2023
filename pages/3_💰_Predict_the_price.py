@@ -17,11 +17,12 @@ data = pd.read_json("preprocessed_10k.json").T
 cities = data["city"].unique().tolist()
 
 # get a list of all the provinces
-provinces = data["province"].unique().tolist()
+# neighborhoods = data["neigborhood"].unique().tolist()
 
 street = st.text_input("Street", "C/ de Balmes 75")
 # set up a dropdown menu to select the state between Hamburg, Berlin and Bremen
 # province = st.selectbox("Select a state", ["Hamburg", "Berlin", "Bremen"], index=0)
+province = "Barcelona"
 country = "Spain"
 
 city = st.selectbox("Select a state", cities, index=0)
