@@ -68,8 +68,8 @@ avg_prices_city = data.groupby('city')['price'].mean()
 if submit:
     with st.spinner("Churning out predictions..."):
         st.markdown("## Predicted price and relevant features")
-        st.image("images\shap1.png", use_column_width=True)
-        st.image("images\shap2.png", use_column_width=True)
+        st.image("images/shap1.png", use_column_width=True)
+        st.image("images/shap2.png", use_column_width=True)
 
 # X = data[['square_meters','bedrooms','bathrooms']]
 # y = data['price']
