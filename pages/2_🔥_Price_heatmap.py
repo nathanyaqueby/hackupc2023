@@ -1,5 +1,6 @@
 import streamlit as st
 from auth0_component import login_button
+from streamlit_extras.mention import mention
 import pandas as pd
 import numpy as np
 import pydeck as pdk
@@ -15,12 +16,45 @@ st.title("Real estate price range heatmap 🔥")
 # sidebar
 # st.sidebar.title("Navigation")
 
+# tech support section
+with st.sidebar.form(key='tech_support'):
+    st.title("Contact")
+
+    st.markdown("Get help with any technical issue you might experience.")
+
+    mention(
+    label="Website",
+    icon="💻",
+    url="https://restb.ai/",
+    write="Website"
+    )
+
+    mention(
+    label="Twitter",
+    icon="🐤",
+    url="https://twitter.com/restb_ai?lang=en",
+    write="Twitter"
+    )
+
+    mention(
+    label="GitHub",
+    icon="⚙️",
+    url="https://www.github.com/diaa-shalaby/HackUPC2023",
+    write="GitHub"
+    )
+
+    # create a submit button
+    if st.form_submit_button("Contact us", type="secondary", use_container_width=True):
+        st.write("Submitted!")
+
 # load data
 data = pd.read_json("preprocessed_10k.json").T
 
 chart_data = pd.DataFrame(
    np.random.randn(1000, 2) / [50, 50] + [41.403706, 2.173504],
    columns=['lat', 'lon'])
+
+st.dataframe(chart_data)
 
 st.pydeck_chart(pdk.Deck(
     map_style=None,
