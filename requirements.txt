@@ -1,3 +1,4 @@
 streamlit
 streamlit-auth0-component
 openai
+leafmap
