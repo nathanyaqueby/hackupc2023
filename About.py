@@ -1,5 +1,6 @@
 import streamlit as st
 from auth0_component import login_button
+import openai
 
 st.set_page_config(page_title="MLheads",
                    page_icon="🤯",
@@ -43,9 +44,26 @@ with st.sidebar.form(key="form1"):
 
 # generate a real estate description if submit button is clicked
 if submit:
-    st.write("Generating text...")
-    st.write("House size: " + str(house_size))
-    st.write("Number of bedrooms: " + str(bedrooms))
-    st.write("Number of bathrooms: " + str(bathrooms))
-    st.write("Image(s): " + str(uploaded_file))
-    st.write("Done!")
+    with st.spinner("Generating text..."):
+        st.write("House size: " + str(house_size))
+        st.write("Number of bedrooms: " + str(bedrooms))
+        st.write("Number of bathrooms: " + str(bathrooms))
+        st.write("Image(s): " + str(uploaded_file))
+
+        openai.api_key = st.secrets["API_KEY"]
+
+        prompt = f"Generate a real estate description based on the following features:\n\nHouse size: {house_size} m2\nNumber of bedrooms: {bedrooms}\nNumber of bathrooms: {bathrooms}\n\nImage(s): {uploaded_file}"
+        st.write(f"GPT-3 Prompt: {prompt}")
+
+        response = openai.Completion.create(
+            engine="text-davinci-002",
+            prompt=prompt,
+            temperature=0.8,
+            max_tokens=1000,
+            top_p=1,
+            frequency_penalty=0,
+            presence_penalty=0
+        )
+        #st.write(f"GPT-3 Response\n{response}")
+        text_result = response['choices'][0]["text"]
+    st.write(f"Result:\n{text_result}")
