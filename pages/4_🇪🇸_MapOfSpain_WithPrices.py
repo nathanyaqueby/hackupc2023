@@ -69,11 +69,29 @@ with st.sidebar.form(key='tech_support'):
 #             scrolling=True
 #             )
 
-# Create a map centered on Spain
-m = fol.Map(location=[40.416775, -3.703790], zoom_start=6)
+# Set initial location to Madrid
+init_location = [40.416775, -3.703790]
 
-# Add a marker for Madrid
-fol.Marker([40.416775, -3.703790], popup='Madrid').add_to(m)
+# Create a folium map object
+# m = folium.Map(location=init_location, zoom_start=6)
 
-# Display the map in Streamlit
-st.markdown(m._repr_html_(), unsafe_allow_html=True)
+# # Add a marker for Madrid
+# folium.Marker(location=[40.416775, -3.703790], popup='Madrid').add_to(m)
+
+# # Add a marker for Barcelona
+# folium.Marker(location=[41.385064, 2.173404], popup='Barcelona').add_to(m)
+
+# # Display the map in Streamlit
+# st.markdown(folium.Map(location=init_location, zoom_start=6)._repr_html_(), unsafe_allow_html=True)
+
+m = folium.Map(location=init_location, zoom_start=16)
+
+folium.Marker(
+    init_location, popup="Madrid", tooltip="Madrid"
+).add_to(m)
+
+barcelona_coords = [41.385064, 2.173404]
+
+folium.Marker(
+    barcelona_coords, popup="Barcelona", tooltip="Barcelona"
+).add_to(m)

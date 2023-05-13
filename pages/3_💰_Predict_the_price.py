@@ -14,9 +14,8 @@ from geopy.extra.rate_limiter import RateLimiter
 data = pd.read_json("preprocessed_10k.json").T
 
 # get the average prices per region
-avg_prices = data.groupby("region").mean()["price"]
+avg_prices_region = data.groupby('region')['price'].mean()
 
-st.dataframe(avg_prices)
+# get the average prices per city
+avg_prices_city = data.groupby('city')['price'].mean()
 
-# plot a heatmap of the average prices per region
-st.map(avg_prices)
