@@ -1,6 +1,7 @@
 import streamlit as st
 from auth0_component import login_button
 import streamlit.components.v1 as components
+from streamlit_extras.mention import mention
 import leafmap.foliumap as leafmap
 
 st.set_page_config(page_title="MLheads",
@@ -17,6 +18,37 @@ st.markdown("""
             margin-right: 15px;
         }
     </style>""", unsafe_allow_html=True)
+
+# tech support section
+with st.sidebar.form(key='tech_support'):
+    st.title("Contact")
+
+    st.markdown("Get help with any technical issue you might experience.")
+
+    mention(
+    label="Website",
+    icon="💻",
+    url="https://restb.ai/",
+    write="Website"
+    )
+
+    mention(
+    label="Twitter",
+    icon="🐤",
+    url="https://twitter.com/restb_ai?lang=en",
+    write="Twitter"
+    )
+
+    mention(
+    label="GitHub",
+    icon="⚙️",
+    url="https://www.github.com/diaa-shalaby/HackUPC2023",
+    write="GitHub"
+    )
+
+    # create a submit button
+    if st.form_submit_button("Contact us", type="secondary", use_container_width=True):
+        st.write("Submitted!")
 
 components.html("""
             <html>
