@@ -67,8 +67,15 @@ m = folium.Map(location=[41.3851,2.1734], zoom_start=5)
 
 # Populates a marker at each province of Spain
 for x in spainProvList:
+    if x[3] < 1000:
+        icon = folium.Icon(color="blue")
+    elif x[3] < 2000:
+        icon = folium.Icon(color="orange")
+    else:
+        icon = folium.Icon(color="red")
+    
     folium.Marker(
-        location=[x[1], x[2]], popup=f"{x[0]}", tooltip=f"€{x[3]}"
+        location=[x[1], x[2]], popup=f"{x[0]}", tooltip=f"€{x[3]}", icon=icon
     ).add_to(m)
 
 st_data = st_folium(m, width=1440, height=640)
