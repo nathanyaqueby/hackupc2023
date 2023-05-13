@@ -56,11 +56,15 @@ with st.sidebar.form(key='tech_support'):
 # load data
 data = pd.read_json("preprocessed_10k.json").T
 
+# get the average prices per region
+avg_prices_region = data.groupby('region')['price'].mean()
+
+# get the average prices per city
+avg_prices_city = data.groupby('city')['price'].mean()
+
 chart_data = pd.DataFrame(
    np.random.randn(1000, 2) / [50, 50] + [41.403706, 2.173504],
    columns=['lat', 'lon'])
-
-st.dataframe(chart_data)
 
 st.pydeck_chart(pdk.Deck(
     map_style=None,
@@ -92,36 +96,32 @@ st.pydeck_chart(pdk.Deck(
     height=900
 ))
 
-# # create a list of unique areas
-# areas = data["area"].unique().tolist()
+# create a list of unique areas
+areas = data["city"].unique().tolist()
 
-# with st.sidebar.form(key="form1"):
-#     st.header("Insert an address or select the area to generate a heatmap")
+with st.sidebar.form(key="form1"):
+    st.header("Insert an address or select the area to generate a heatmap")
 
-#     # create a selectbox to choose an area
-#     area = st.selectbox("Select an area", areas)
+    # create a selectbox to choose an area
+    area = st.selectbox("Select an area", areas)
 
-#     # filter data by area
-#     data = data[data["area"] == area]
+    # filter data by area
+    data = data[data["area"] == area]
 
-#     # create a list of unique price ranges
-#     price_ranges = data["price_range"].unique().tolist()
+    # submit button
+    # st.sidebar.subheader("Generate text")
+    submit = st.form_submit_button("Generate heatmap", type="primary", use_container_width=True)
 
-#     # create a selectbox to choose a price range
-#     price_range = st.selectbox("Select a price range", price_ranges)
+with st.expander:
+    col1, col2 = st.beta_columns(2)
 
-#     # filter data by price range
-#     data = data[data["price_range"] == price_range]
-
-#     # create a list of unique property types
-#     property_types = data["property_type"].unique().tolist()
-
-#     # create a selectbox to choose a property type
-#     property_type = st.selectbox("Select a property type", property_types)
-
-#     # submit button
-#     # st.sidebar.subheader("Generate text")
-#     submit = st.form_submit_button("Generate heatmap", type="primary", use_container_width=True)
+    with col1:
+        st.header("Average price per region")
+        st.bar_chart(avg_prices_region)
+    
+    with col2:
+        st.header("Average price per city")
+        st.bar_chart(avg_prices_city)
 
 # # generate a heatmap of prices in the selected area, price range and property type as a map layer if submit button is clicked
 # if submit:
