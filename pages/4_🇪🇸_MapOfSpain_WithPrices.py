@@ -52,28 +52,34 @@ with st.sidebar.form(key='tech_support'):
     if st.form_submit_button("Contact us", type="secondary", use_container_width=True):
         st.write("Submitted!")
 
-# components.html("""
-#             <html>
-#             <head>
-#             </head>
+components.html("""
+            <html>
+            <head>
+            </head>
 
-#             <iframe height="700" style="width: 100%;" scrolling="no" title="Spain OpenStreetMap" src="https://codepen.io/nqueby/embed/dygKrdm?default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-#             See the Pen <a href="https://codepen.io/nqueby/pen/dygKrdm">
-#             Spain OpenStreetMap</a> by Nathanya Queby Satriani (<a href="https://codepen.io/nqueby">@nqueby</a>)
-#             on <a href="https://codepen.io">CodePen</a>.
-#             </iframe>
+            <iframe height="700" style="width: 100%;" scrolling="no" title="Spain OpenStreetMap" src="https://codepen.io/nqueby/embed/dygKrdm?default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+            See the Pen <a href="https://codepen.io/nqueby/pen/dygKrdm">
+            Spain OpenStreetMap</a> by Nathanya Queby Satriani (<a href="https://codepen.io/nqueby">@nqueby</a>)
+            on <a href="https://codepen.io">CodePen</a>.
+            </iframe>
 
-#             </html>
-#             """,
-#             height=700,
-#             scrolling=True
-#             )
+            </html>
+            """,
+            height=700,
+            scrolling=True
+            )
 
-# Create a map centered on Spain
-m = fol.Map(location=[40.416775, -3.703790], zoom_start=6)
+# Set initial location to Madrid
+init_location = [40.416775, -3.703790]
+
+# Create a folium map object
+m = folium.Map(location=init_location, zoom_start=6)
 
 # Add a marker for Madrid
-fol.Marker([40.416775, -3.703790], popup='Madrid').add_to(m)
+folium.Marker(location=[40.416775, -3.703790], popup='Madrid').add_to(m)
+
+# Add a marker for Barcelona
+folium.Marker(location=[41.385064, 2.173404], popup='Barcelona').add_to(m)
 
 # Display the map in Streamlit
-st.markdown(m._repr_html_(), unsafe_allow_html=True)
+st.markdown(folium.Map(location=init_location, zoom_start=6)._repr_html_(), unsafe_allow_html=True)
