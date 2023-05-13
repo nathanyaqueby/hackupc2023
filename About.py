@@ -18,7 +18,7 @@ st.write(user_info)
 # sidebar
 st.sidebar.title("Navigation")
 
-with st.form(key="form1"):
+with st.sidebar.form(key="form1"):
     st.header("Generate a Real Estate Description")
 
     # upload image(s)
