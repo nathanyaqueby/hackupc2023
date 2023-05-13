@@ -75,10 +75,10 @@ def load_model(X, y):
     d_test = xgboost.DMatrix(X_test, label=y_test)
     params = {
         "eta": 0.01,
-        "objective": "binary:logistic",
+        "objective": "reg:squarederror",
         "subsample": 0.5,
         "base_score": np.mean(y_train),
-        "eval_metric": "logloss",
+        "eval_metric": "rmse",
         "n_jobs": -1,
     }
     model = xgboost.train(params, d_train, 10, evals = [(d_test, "test")], verbose_eval=100, early_stopping_rounds=20)
