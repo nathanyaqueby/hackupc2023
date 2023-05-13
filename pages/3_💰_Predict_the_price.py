@@ -5,20 +5,9 @@ and display it to the user.
 We also add an explainability method SHAP to explain the model's prediction.
 """
 import streamlit as st
-import streamlit.components.v1 as components
-from streamlit_extras.mention import mention
 import pandas as pd
-import numpy as np
-import pydeck as pdk
-from shapely.geometry import Point, Polygon
-import geopandas as gpd
-import pandas as pd
-import geopy
 from geopy.geocoders import Nominatim
 from geopy.extra.rate_limiter import RateLimiter
-import plotly.express as px
-from streamlit_folium import st_folium
-import folium
 
 
 # load data
