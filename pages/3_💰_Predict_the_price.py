@@ -56,7 +56,7 @@ with st.sidebar.form(key="form1"):
     submit = st.form_submit_button("Predict price", type="primary", use_container_width=True)
 
 # load data
-data = pd.read_json("preprocessed_10k.json").T
+data = pd.read_json("preprocessed_sample.json").T
 
 # get the average prices per region
 avg_prices_region = data.groupby('region')['price'].mean()
