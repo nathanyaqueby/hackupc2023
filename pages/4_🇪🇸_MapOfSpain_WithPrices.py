@@ -49,7 +49,7 @@ with st.sidebar.form(key='tech_support'):
         st.write("Submitted!")
 
 # load data
-# data = pd.read_json("preprocessed_10k.json").T
+data = pd.read_json("preprocessed_10k.json").T
 
 # Create a map centered on Spain
 m = fol.Map(location=[40.416775, -3.703790], zoom_start=6)
