@@ -24,7 +24,7 @@ uploaded_file = st.sidebar.file_uploader("Choose an image...", accept_multiple_f
 
 # insert house size in square meters
 # st.sidebar.subheader("Insert House Size in Square Meters")
-house_size = st.sidebar.number_input("House Size", min_value=0.0, max_value=10000.0, value=0.0, step=0.1)
+house_size = st.sidebar.number_input("House Size (in m2)", min_value=0.0, max_value=10000.0, value=0.0, step=0.1)
 
 # insert number of bedrooms
 # st.sidebar.subheader("Number of Bedrooms")
@@ -35,4 +35,14 @@ bedrooms = st.sidebar.number_input("Number of Bedrooms", min_value=0, max_value=
 bathrooms = st.sidebar.number_input("Number of Bathrooms", min_value=0, max_value=10, value=0, step=1)
 
 # submit button
-st.sidebar.subheader("Generate text")
+# st.sidebar.subheader("Generate text")
+submit = st.sidebar.button("Generate text", key="generate_text", type="primary", use_column_width=True)
+
+# generate a real estate description if submit button is clicked
+if submit:
+    st.write("Generating text...")
+    st.write("House size: " + str(house_size))
+    st.write("Number of bedrooms: " + str(bedrooms))
+    st.write("Number of bathrooms: " + str(bathrooms))
+    st.write("Image(s): " + str(uploaded_file))
+    st.write("Done!")
