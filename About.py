@@ -23,7 +23,7 @@ with st.sidebar.form(key="form1"):
 
     # upload image(s)
     st.subheader("Upload Image(s)")
-    uploaded_file = st.sidebar.file_uploader("Choose an image...", accept_multiple_files=True)
+    uploaded_file = st.file_uploader("Choose an image...", accept_multiple_files=True)
 
     # insert house size in square meters
     # st.sidebar.subheader("Insert House Size in Square Meters")
