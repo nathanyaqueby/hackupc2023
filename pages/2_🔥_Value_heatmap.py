@@ -15,6 +15,12 @@ st.title("Real estate price range heatmap 🔥")
 
 # sidebar
 # st.sidebar.title("Navigation")
+st.markdown("""
+    <style>
+    .css-8hkptd {
+            margin-right: 15px;
+        }
+    </style>""", unsafe_allow_html=True)
 
 # tech support section
 with st.sidebar.form(key='tech_support'):

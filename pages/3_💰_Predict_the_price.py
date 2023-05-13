@@ -9,6 +9,22 @@ import pandas as pd
 from geopy.geocoders import Nominatim
 from geopy.extra.rate_limiter import RateLimiter
 
+st.set_page_config(page_title="MLheads",
+                   page_icon="🤯",
+                   layout="wide",
+                   initial_sidebar_state="expanded")
+
+st.title("Predict the price 💰")
+# st.markdown("Upload pictures of a property and our AI model will generate the perfect description based on the features in the images")
+
+# sidebar
+# st.sidebar.title("Navigation")
+st.markdown("""
+    <style>
+    .css-8hkptd {
+            margin-right: 15px;
+        }
+    </style>""", unsafe_allow_html=True)
 
 # load data
 data = pd.read_json("preprocessed_10k.json").T

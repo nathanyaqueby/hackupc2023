@@ -53,48 +53,19 @@ with st.sidebar.form(key='tech_support'):
     if st.form_submit_button("Contact us", type="secondary", use_container_width=True):
         st.write("Submitted!")
 
-components.html("""
-            <html>
-            <head>
-            </head>
+# Set initial location to Barcelona
+init_location = [41.385064, 2.173404]
 
-            <iframe height="700" style="width: 100%;" scrolling="no" title="Spain OpenStreetMap" src="https://codepen.io/nqueby/embed/dygKrdm?default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-            See the Pen <a href="https://codepen.io/nqueby/pen/dygKrdm">
-            Spain OpenStreetMap</a> by Nathanya Queby Satriani (<a href="https://codepen.io/nqueby">@nqueby</a>)
-            on <a href="https://codepen.io">CodePen</a>.
-            </iframe>
-
-            </html>
-            """,
-            height=700,
-            scrolling=True
-            )
-
-# Set initial location to Madrid
-init_location = [40.416775, -3.703790]
-
-# Create a folium map object
-# m = folium.Map(location=init_location, zoom_start=6)
-
-# # Add a marker for Madrid
-# folium.Marker(location=[40.416775, -3.703790], popup='Madrid').add_to(m)
-
-# # Add a marker for Barcelona
-# folium.Marker(location=[41.385064, 2.173404], popup='Barcelona').add_to(m)
-
-# # Display the map in Streamlit
-# st.markdown(folium.Map(location=init_location, zoom_start=6)._repr_html_(), unsafe_allow_html=True)
-
-m = folium.Map(location=init_location, zoom_start=16)
+m = folium.Map(location=init_location, zoom_start=10)
 
 folium.Marker(
-    init_location, popup="Madrid", tooltip="Madrid"
+    init_location, popup="Barcelona", tooltip="Barcelona"
 ).add_to(m)
 
-barcelona_coords = [41.385064, 2.173404]
+madrid_coords = [40.416775, -3.703790]
 
 folium.Marker(
-    barcelona_coords, popup="Barcelona", tooltip="Barcelona"
+    madrid_coords, popup="Madrid", tooltip="Madrid"
 ).add_to(m)
 
 st_data = st_folium(m, width=640, height=640)
