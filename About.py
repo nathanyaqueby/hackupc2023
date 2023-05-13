@@ -36,7 +36,7 @@ bathrooms = st.sidebar.number_input("Number of Bathrooms", min_value=0, max_valu
 
 # submit button
 # st.sidebar.subheader("Generate text")
-submit = st.sidebar.button("Generate text", key="generate_text", type="primary", use_column_width=True)
+submit = st.sidebar.button("Generate text", key="generate_text", type="primary", use_container_width=True)
 
 # generate a real estate description if submit button is clicked
 if submit:
