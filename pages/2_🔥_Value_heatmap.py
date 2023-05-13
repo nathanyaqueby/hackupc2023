@@ -97,16 +97,16 @@ st.pydeck_chart(pdk.Deck(
 ))
 
 # create a list of unique areas
-areas = data["city"].unique().tolist()
+cities = data["city"].unique().tolist()
 
 with st.sidebar.form(key="form1"):
     st.header("Insert an address or select the area to generate a heatmap")
 
     # create a selectbox to choose an area
-    area = st.selectbox("Select an area", areas)
+    city = st.selectbox("Select a city", cities)
 
     # filter data by area
-    data = data[data["area"] == area]
+    data = data[data["city"] == city]
 
     # submit button
     # st.sidebar.subheader("Generate text")
