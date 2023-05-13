@@ -8,3 +8,4 @@ geopy
 streamlit-folium
 xgboost
 streamlit-shap
+gradio-client
