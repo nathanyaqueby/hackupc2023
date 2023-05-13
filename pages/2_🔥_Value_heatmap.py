@@ -112,7 +112,7 @@ with st.sidebar.form(key="form1"):
     # st.sidebar.subheader("Generate text")
     submit = st.form_submit_button("Generate heatmap", type="primary", use_container_width=True)
 
-with st.expander:
+with st.expander("Check out the average prices per region and city"):
     col1, col2 = st.beta_columns(2)
 
     with col1:
