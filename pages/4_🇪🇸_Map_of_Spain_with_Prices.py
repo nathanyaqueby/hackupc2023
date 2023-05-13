@@ -5,6 +5,7 @@ from streamlit_extras.mention import mention
 import folium
 import leafmap.foliumap as leafmap
 from streamlit_folium import st_folium
+import pandas as pd
 
 st.set_page_config(page_title="MLheads",
                    page_icon="🤯",
@@ -52,6 +53,11 @@ with st.sidebar.form(key='tech_support'):
     # create a submit button
     if st.form_submit_button("Contact us", type="secondary", use_container_width=True):
         st.write("Submitted!")
+
+# Puts all provinces in an array
+df = pd.read_csv('spainProvinces.csv', delimiter='\n')
+spainProvList = [list(row) for row in df.values]
+print(spainProvList)
 
 # Set initial location to Barcelona
 init_location = [41.385064, 2.173404]

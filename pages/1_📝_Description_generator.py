@@ -59,7 +59,7 @@ if submit:
 
         openai.api_key = st.secrets["API_KEY"]
 
-        prompt = f"Generate a min. 100-word real estate description based on the following features:\n\nHouse size: {house_size} m2\nNumber of bedrooms: {bedrooms}\nNumber of bathrooms: {bathrooms}\n\nImage(s): {uploaded_file}"
+        prompt = f"Generate a catchy title and a minimum 100-word real estate description based on the following features:\n\nHouse size: {house_size} m2\nNumber of bedrooms: {bedrooms}\nNumber of bathrooms: {bathrooms}\n\nImage(s): {uploaded_file}"
         st.write(f"GPT-3 Prompt: {prompt}")
 
         st.markdown("---")
