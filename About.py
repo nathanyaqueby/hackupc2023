@@ -10,7 +10,8 @@ st.set_page_config(page_title="MLheads",
                    initial_sidebar_state="expanded")
 
 st.title("MLheads 🏠")
-st.markdown("Explore the real estate market in Spain! Meanwhile, walk through the city of Barcelona with the OpenStreetMap below.")
+
+st.sidebar.info("Explore the real estate market in Spain! Meanwhile, walk through the city of Barcelona with the OpenStreetMap below.")
 
 st.markdown("""
     <style>
