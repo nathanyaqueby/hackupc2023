@@ -55,23 +55,33 @@ with st.sidebar.form(key='tech_support'):
         st.write("Submitted!")
 
 # Puts all provinces in an array
-df = pd.read_csv('spainProvinces.csv', delimiter='\n')
+df = pd.read_csv('spainProvinces.csv')
 spainProvList = [list(row) for row in df.values]
-print(spainProvList)
+
+# Makes map 
+m = folium.Map(location=[41.3851,2.1734], zoom_start=10)
+
+# Populates a marker at each province of Spain
+for x in spainProvList:
+    folium.Marker(
+        location=[x[1], x[2]], popup=f"{x[0]}", tooltip=f"{x[0]}"
+    ).add_to(m)
+
+
 
 # Set initial location to Barcelona
-init_location = [41.385064, 2.173404]
+# init_location = [41.385064, 2.173404]
 
-m = folium.Map(location=init_location, zoom_start=10)
+# m = folium.Map(location=init_location, zoom_start=10)
 
-folium.Marker(
-    init_location, popup="Barcelona", tooltip="Barcelona"
-).add_to(m)
+# folium.Marker(
+#     init_location, popup="Barcelona", tooltip="Barcelona"
+# ).add_to(m)
 
-madrid_coords = [40.416775, -3.703790]
+# madrid_coords = [40.416775, -3.703790]
 
-folium.Marker(
-    madrid_coords, popup="Madrid", tooltip="Madrid"
-).add_to(m)
+# folium.Marker(
+#     madrid_coords, popup="Madrid", tooltip="Madrid"
+# ).add_to(m)
 
-st_data = st_folium(m, width=1440, height=640)
+# st_data = st_folium(m, width=1440, height=640)
