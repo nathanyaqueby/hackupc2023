@@ -66,4 +66,5 @@ if submit:
         )
         #st.write(f"GPT-3 Response\n{response}")
         text_result = response['choices'][0]["text"]
-    st.write(f"Result:\n{text_result}")
+    st.markdown("## Generated Text")
+    st.write(f"{text_result}")
