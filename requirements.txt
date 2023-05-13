@@ -3,3 +3,4 @@ streamlit-auth0-component
 streamlit-extras
 openai
 leafmap
+pydeck
