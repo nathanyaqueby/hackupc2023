@@ -6,8 +6,8 @@ st.set_page_config(page_title="MLheads",
                    layout="wide",
                    initial_sidebar_state="expanded")
 
-clientId = "OI8ZTGxVXXrNFPC1VS0ppNvafKAL7llW"
-domain = "mlheads.eu.auth0.com"
+clientId = "JNM4ccGiddf0pF6uIGKAD5BKyaPWKVcB"
+domain = "mlheads.us.auth0.com"
 
 user_info = login_button(clientId, domain = domain)
 st.write(user_info)
