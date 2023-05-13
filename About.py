@@ -39,7 +39,7 @@ with st.sidebar.form(key="form1"):
 
     # submit button
     # st.sidebar.subheader("Generate text")
-    submit = st.form_submit_button("Generate text", type="primary", use_column_width=True)
+    submit = st.form_submit_button("Generate text", type="primary", use_container_width=True)
 
 # generate a real estate description if submit button is clicked
 if submit:
