@@ -17,14 +17,14 @@ st.markdown("""
         }
     </style>""", unsafe_allow_html=True)
 
-clientId = "JNM4ccGiddf0pF6uIGKAD5BKyaPWKVcB"
-domain = "mlheads.us.auth0.com"
+# clientId = "JNM4ccGiddf0pF6uIGKAD5BKyaPWKVcB"
+# domain = "mlheads.us.auth0.com"
 
-user_info = login_button(clientId, domain = domain)
-st.write(user_info)
+# user_info = login_button(clientId, domain = domain)
+# st.write(user_info)
 
-# sidebar
-st.sidebar.title("Navigation")
+# # sidebar
+# st.sidebar.title("Navigation")
 
 with st.sidebar.form(key="form1"):
     st.header("Generate a Real Estate Description")
@@ -61,6 +61,8 @@ if submit:
 
         prompt = f"Generate a min. 100-word real estate description based on the following features:\n\nHouse size: {house_size} m2\nNumber of bedrooms: {bedrooms}\nNumber of bathrooms: {bathrooms}\n\nImage(s): {uploaded_file}"
         st.write(f"GPT-3 Prompt: {prompt}")
+
+        st.markdown("---")
 
         response = openai.Completion.create(
             engine="text-davinci-002",
