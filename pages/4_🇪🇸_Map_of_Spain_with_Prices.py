@@ -58,7 +58,7 @@ with st.sidebar.form(key='tech_support'):
 df = pd.read_csv('spainProvinces.csv')
 spainProvList = [list(row) for row in df.values]
 
-# Makes map 
+# Makes map (w/ Barcelona as start)
 m = folium.Map(location=[41.3851,2.1734], zoom_start=10)
 
 # Populates a marker at each province of Spain
@@ -84,4 +84,4 @@ for x in spainProvList:
 #     madrid_coords, popup="Madrid", tooltip="Madrid"
 # ).add_to(m)
 
-# st_data = st_folium(m, width=1440, height=640)
+st_data = st_folium(m, width=1440, height=640)
