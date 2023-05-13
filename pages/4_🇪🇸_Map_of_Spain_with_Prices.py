@@ -59,7 +59,7 @@ df = pd.read_csv('spainProvinces.csv')
 spainProvList = [list(row) for row in df.values]
 
 # Makes map (w/ Barcelona as start)
-m = folium.Map(location=[41.3851,2.1734], zoom_start=5)
+m = folium.Map(location=[41.3851,2.1734], zoom_start=6)
 
 # Populates a marker at each province of Spain
 for x in spainProvList:
