@@ -58,13 +58,17 @@ with st.sidebar.form(key='tech_support'):
 df = pd.read_csv('spainProvinces.csv')
 spainProvList = [list(row) for row in df.values]
 
+# change the _ in the string to .
+for x in spainProvList:
+    x[3] = x[3].replace("_", ".")
+
 # Makes map (w/ Barcelona as start)
 m = folium.Map(location=[41.3851,2.1734], zoom_start=5)
 
 # Populates a marker at each province of Spain
 for x in spainProvList:
     folium.Marker(
-        location=[x[1], x[2]], popup=f"{x[0]}", tooltip=f"{x[0]}"
+        location=[x[1], x[2]], popup=f"{x[0]}", tooltip=f"€{x[3]}"
     ).add_to(m)
 
 st_data = st_folium(m, width=1440, height=640)
