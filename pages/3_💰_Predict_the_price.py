@@ -169,4 +169,4 @@ if explainability_method == "SHAP-1":
 elif explainability_method == "SHAP-2":
     predictXtest(y_test, 'F')
 elif explainability_method == "DiCE":
-    getCounterfacualUpgr(y_test)
+    st.dataframe(getCounterfacualUpgr(y_test))
