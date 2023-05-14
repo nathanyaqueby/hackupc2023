@@ -82,14 +82,19 @@ new_column_names = {
 }
 
 df = df.rename(columns=new_column_names)
-
 df = df[['price','square_meters','bedrooms','bathrooms','propRange','kitchenRange','bathroomRange','interiorRange']]
 
+# remove rows with nan values
+df = df.dropna()
+
+# set x and y
 x = df.drop('price', axis = 1)
 y = df['price']
 
+# split the data into train and test
 x_train, x_test, y_train, y_test = train_test_split(x,y, test_size= 0.2, random_state=42)
 
+# convert all columns to float
 for i in df.columns:
     df[i] = df[i].astype(float)
 
