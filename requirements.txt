@@ -11,3 +11,4 @@ streamlit-shap
 gradio-client
 scikit-learn
 numpy==1.23.1
+dice-ml
