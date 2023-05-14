@@ -62,10 +62,10 @@ df = data.T
 df = df.reset_index()
 
 # get the average prices per region
-avg_prices_region = data.groupby('region')['price'].mean()
+# avg_prices_region = data.groupby('region')['price'].mean()
 
 # get the average prices per city
-avg_prices_city = data.groupby('city')['price'].mean()
+# avg_prices_city = data.groupby('city')['price'].mean()
 
 # display images after clicking the submit button
 # if submit:
