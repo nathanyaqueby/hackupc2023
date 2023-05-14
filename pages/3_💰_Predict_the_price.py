@@ -121,4 +121,4 @@ def getingPlotPrediction(listFeatures):
     shap_values = explainer(features)
     st_shap(shap.plots.force(shap_values), height=300)
 
-getingPlotPrediction([100,2,2,3,5,4,6])
+# getingPlotPrediction([100,2,2,3,5,4,6])
