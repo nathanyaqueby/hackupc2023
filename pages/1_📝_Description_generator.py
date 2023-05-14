@@ -60,7 +60,7 @@ st.sidebar.image("images/logo.png", use_column_width=True)
 if submit:
     with st.spinner("Generating text..."):
 
-        col3, col4 = st.beta_columns([7, 3])
+        col3, col4 = st.beta_columns([7, 3], gap="medium")
 
         with col3:
             st.markdown(f"House size: `{house_size}`")
@@ -99,9 +99,8 @@ if submit:
             title_result = response1['choices'][0]["text"]
             text_result = response2['choices'][0]["text"]
 
-            st.markdown("Generated text:")
-
-            st.markdown(f"## {title_result}")
+            st.markdown("## Generated Text")
+            st.markdown(f"{title_result}")
             st.write(f"{text_result}")
 
             client = Client("https://tweakdoor-stabilityai-stable-diffusion-2-1.hf.space/")
@@ -112,4 +111,4 @@ if submit:
             print(result)
 
         with col4:
-            st.image("images/test_img.jpg", width=400)
+            st.image("images/test_img.jpg", use_column_width=True)
