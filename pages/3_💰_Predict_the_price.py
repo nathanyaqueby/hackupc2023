@@ -96,13 +96,6 @@ x_train, x_test, y_train, y_test = train_test_split(x,y, test_size= 0.2, random_
 for i in df.columns:
     df[i] = df[i].astype(float)
 
-# display x_train and y_train
-st.write("x_train", x_train)
-st.write("y_train", y_train)
-
-# check if there are nan values
-st.write("Are there any nan values?", df.isnull().values.any())
-
 # use Ridge regression to predict the price
 model = Ridge(alpha=10, random_state=42)
 model.fit(x_train,y_train)
@@ -121,3 +114,11 @@ def predictXtest(num_to_predict,typePlot ='F'):
         st_shap(shap.plots.force(shap_values[num_to_predict]), height=300)
 
 predictXtest(2, 'W')
+predictXtest(4)
+
+def getingPlotPrediction(listFeatures):
+    features = pd.DataFrame([listFeatures],columns=x_test.columns)
+    shap_values = explainer(features)
+    st_shap(shap.plots.force(shap_values), height=300)
+
+getingPlotPrediction([100,2,2,3,5,4,6])
