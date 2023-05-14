@@ -99,8 +99,8 @@ if submit:
             title_result = response1['choices'][0]["text"]
             text_result = response2['choices'][0]["text"]
 
-            st.markdown("## Generated Text")
-            st.markdown(f"**{title_result}**")
+            st.markdown("Generated text:")
+            st.markdown("## "+title_result)
             st.write(f"{text_result}")
 
             client = Client("https://tweakdoor-stabilityai-stable-diffusion-2-1.hf.space/")
@@ -111,4 +111,4 @@ if submit:
             print(result)
 
         with col4:
-            st.image("images/test_img.jpg", width=300)
+            st.image("images/test_img.jpg", width=400)
