@@ -39,11 +39,11 @@ with st.sidebar.form(key="form1"):
     # upload image(s)
     # insert address
     # st.sidebar.subheader("Insert Address")
-    address = st.text_input("Address", value="Koningin Wilhelminaplein 13, Barcelona")
+    address = st.text_input("Address", value="C/ del Consell de Cent 313, Barcelona")
 
     # insert house size in square meters
     # st.sidebar.subheader("Insert House Size in Square Meters")
-    house_size = st.number_input("House Size (in m2)", min_value=0.0, max_value=10000.0, value=25.0, step=0.1)
+    house_size = st.number_input("House Size (in m2)", min_value=0.0, max_value=10000.0, value=100.0, step=0.1)
 
     # insert number of bedrooms
     # st.sidebar.subheader("Number of Bedrooms")
@@ -52,6 +52,10 @@ with st.sidebar.form(key="form1"):
     # insert number of bathrooms
     # st.sidebar.subheader("Number of Bathrooms")
     bathrooms = st.number_input("Number of Bathrooms", min_value=0, max_value=10, value=1, step=1)
+
+    # select explainability method
+    # st.sidebar.subheader("Select Explainability Method")
+    explainability_method = st.selectbox("Select Explainability Method", ["SHAP-1", "SHAP-2", "DiCE"])
 
     # submit button
     # st.sidebar.subheader("Generate text")
@@ -118,24 +122,17 @@ def predictXtest(num_to_predict,typePlot ='F'):
     else: 
         st_shap(shap.plots.force(shap_values[num_to_predict]), height=300)
 
-predictXtest(2, 'W')
-
-st.markdown("---")
-
-predictXtest(2)
+# predictXtest(2)
 
 def getingPlotPrediction(listFeatures):
     features = pd.DataFrame([listFeatures],columns=x_test.columns)
     shap_values = explainer(features)
     st_shap(shap.plots.force(shap_values), height=300)
 
-# getingPlotPrediction([100,2,2,3,5,4,6])
-
 features_to_analize= ['propRange','kitchenRange','bathroomRange','interiorRange']
 d = dice_ml.Data(dataframe=df,continuous_features=list(x_test.columns), outcome_name='price')
     # We provide the type of model as a parameter (model_type)
 m = dice_ml.Model(model=model, backend="sklearn", model_type='regressor')
-
 
 def getCounterfacualUpgrFromTest(x):
     exp = dice_ml.Dice(d, m, method="genetic")
@@ -145,7 +142,7 @@ def getCounterfacualUpgrFromTest(x):
     exp_dice = exp.generate_counterfactuals(query_instances_housing, total_CFs=2, 
                                             desired_range=[pred,pred+100_000],features_to_vary=features_to_analize)
 
-    exp_dice.visualize_as_dataframe()
+    return exp_dice
     
 def getCounterfacualUpgr(list_of_features):
     features = pd.DataFrame([list_of_features],columns=x_test.columns)
@@ -155,6 +152,19 @@ def getCounterfacualUpgr(list_of_features):
     exp_dice = exp.generate_counterfactuals(features, total_CFs=2, 
                                             desired_range=[pred,pred+100_000],features_to_vary=features_to_analize)
 
-    exp_dice.visualize_as_dataframe()
+    return exp_dice
 
-getCounterfacualUpgr([100,2,2,3,5,4,6])
+input_vals = [house_size, bedrooms, bathrooms]
+
+# get the first row of the dataframe that matches the input values
+try:
+    y_test = df[(df['square_meters'] == house_size) & (df['bedrooms'] == bedrooms) & (df['bathrooms'] == bathrooms)][0]
+except:
+    y_test = [100,2,1,4.1,4.4,4.1,3.9]
+
+if explainability_method == "SHAP-1":
+    predictXtest(y_test, 'W')
+elif explainability_method == "SHAP-2":
+    predictXtest(y_test, 'F')
+elif explainability_method == "DiCE":
+    getCounterfacualUpgr(y_test)
