@@ -97,6 +97,9 @@ for i in df.columns:
 st.write("x_train", x_train)
 st.write("y_train", y_train)
 
+# check if there are nan values
+st.write("Are there any nan values?", df.isnull().values.any())
+
 # use Ridge regression to predict the price
 model = Ridge(alpha=10, random_state=42)
 model.fit(x_train,y_train)
