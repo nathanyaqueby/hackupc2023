@@ -6,13 +6,14 @@ We also add an explainability method SHAP to explain the model's prediction.
 """
 import streamlit as st
 import pandas as pd
-from geopy.geocoders import Nominatim
-from geopy.extra.rate_limiter import RateLimiter
 from streamlit_shap import st_shap
+
 import shap
+shap.initjs()
 from sklearn.model_selection import train_test_split
-import xgboost
-import numpy as np
+
+# import ridge
+from sklearn.linear_model import Ridge
 
 st.set_page_config(page_title="MLheads",
                    page_icon="🤯",
@@ -56,7 +57,9 @@ with st.sidebar.form(key="form1"):
     submit = st.form_submit_button("Predict price", type="primary", use_container_width=True)
 
 # load data
-data = pd.read_json("preprocessed_sample.json").T
+data = pd.read_json("preprocessed_sample.json")
+df = data.T
+df = df.reset_index()
 
 # get the average prices per region
 avg_prices_region = data.groupby('region')['price'].mean()
@@ -65,46 +68,46 @@ avg_prices_region = data.groupby('region')['price'].mean()
 avg_prices_city = data.groupby('city')['price'].mean()
 
 # display images after clicking the submit button
-if submit:
-    with st.spinner("Churning out predictions..."):
-        st.markdown("## Predicted price and relevant features")
-        st.image("images/shap1.png", use_column_width=True)
-        st.image("images/shap2.png", use_column_width=True)
+# if submit:
+#     with st.spinner("Churning out predictions..."):
+#         st.markdown("## Predicted price and relevant features")
+#         st.image("images/shap1.png", use_column_width=True)
+#         st.image("images/shap2.png", use_column_width=True)
 
-X = data[['square_meters','bedrooms','bathrooms']]
-y = data['price']
+new_column_names = {
+    'image_data_r1r6_property': 'propRange',
+    'image_data_r1r6_kitchen': 'kitchenRange',
+    'image_data_r1r6_bathroom': 'bathroomRange',
+    'image_data_r1r6_interior': 'interiorRange'
+}
 
-# turn x and y into numpy arrays with int values
-X = X.to_numpy().astype(int)
-y = y.to_numpy().astype(int)
+df = df.rename(columns=new_column_names)
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=7)
+df = df[['price','square_meters','bedrooms','bathrooms','propRange','kitchenRange','bathroomRange','interiorRange']]
 
-@st.experimental_memo
-def load_model(X, y):
+x = df.drop('price', axis = 1)
+y = df['price']
 
-    # train XGBoost model
-    model = xgboost.XGBRegressor(objective='reg:squarederror', n_estimators=1000, max_depth=10, learning_rate=0.1)
-    model.fit(X_train, y_train)
+x_train, x_test, y_train, y_test = train_test_split(x,y, test_size= 0.2)
 
-    return model
+for i in df.columns:
+    df[i] = df[i].astype(float)
 
-st.title("SHAP in Streamlit")
+# use Ridge regression to predict the price
+model = Ridge(alpha=10)
+model.fit(x_train,y_train)
+y_pred = model.predict(x_test)
 
-# train XGBoost model
-X_display,y_display = shap.datasets.adult(display=True)
+# use SHAP to explain the model's prediction
+explainer = shap.Explainer(model, x_train)
+shap_values = explainer(x_test)
 
-model = load_model(X, y)
+#############
+def predictXtest(num_to_predict,typePlot ='F'):
+    print("The real price is ", y_test.iloc[num_to_predict])
+    if typePlot=='W':
+       st_shap(shap.plots.waterfall(shap_values[num_to_predict]), height=300)
+    else: 
+        st_shap(shap.plots.force(shap_values[num_to_predict]), height=300)
 
-# compute SHAP values
-explainer = shap.Explainer(model, X)
-shap_values = explainer(X)
-
-st_shap(shap.plots.waterfall(shap_values[0]), height=300)
-st_shap(shap.plots.beeswarm(shap_values), height=300)
-
-explainer = shap.TreeExplainer(model)
-shap_values = explainer.shap_values(X)
-
-st_shap(shap.force_plot(explainer.expected_value, shap_values[0,:], X_display.iloc[0,:]), height=200, width=1000)
-st_shap(shap.force_plot(explainer.expected_value, shap_values[:1000,:], X_display.iloc[:1000,:]), height=400, width=1000)
+predictXtest(2, 'W')
