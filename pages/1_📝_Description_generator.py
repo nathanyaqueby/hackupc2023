@@ -50,6 +50,8 @@ with st.sidebar.form(key="form1"):
     # st.sidebar.subheader("Generate text")
     submit = st.form_submit_button("Generate text", type="primary", use_container_width=True)
 
+st.sidebar.image("images/logo.png", use_column_width=True)
+
 # generate a real estate description if submit button is clicked
 if submit:
     with st.spinner("Generating text..."):

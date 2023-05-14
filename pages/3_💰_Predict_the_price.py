@@ -57,6 +57,8 @@ with st.sidebar.form(key="form1"):
     # st.sidebar.subheader("Generate text")
     submit = st.form_submit_button("Predict price", type="primary", use_container_width=True)
 
+st.sidebar.image("images/logo.png", use_column_width=True)
+
 # load data
 data = pd.read_json("preprocessed_sample.json")
 df = data.T

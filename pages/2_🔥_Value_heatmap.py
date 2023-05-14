@@ -78,6 +78,8 @@ with st.sidebar.form(key='tech_support'):
     if st.form_submit_button("Contact us", type="secondary", use_container_width=True):
         st.write("Submitted!")
 
+st.sidebar.image("images/logo.png", use_column_width=True)
+
 chart_data = pd.DataFrame(
    np.random.randn(1000, 2) / [50, 50] + [41.403706, 2.173504],
    columns=['lat', 'lon'])

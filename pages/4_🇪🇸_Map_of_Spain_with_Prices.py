@@ -54,6 +54,8 @@ with st.sidebar.form(key='tech_support'):
     if st.form_submit_button("Contact us", type="secondary", use_container_width=True):
         st.write("Submitted!")
 
+st.sidebar.image("images/logo.png", use_column_width=True)
+
 # Puts all provinces in an array (https://www.indomio.es/en/mercado-inmobiliario/ -> Data)
 df = pd.read_csv('spainProvinces.csv')
 spainProvList = [list(row) for row in df.values]

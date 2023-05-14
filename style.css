@@ -1,5 +1,5 @@
 [data-testid="stSidebarNav"] {
-    background-image: "images/logo.png";
+    background-image: "url(https://github.com/nathanyaqueby/hackupc2023/master/images/logo.png)";
     background-repeat: no-repeat;
     background-size: contain;
     background-position: 50% 0%;
