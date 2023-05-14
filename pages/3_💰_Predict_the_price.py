@@ -57,9 +57,9 @@ with st.sidebar.form(key="form1"):
     # st.sidebar.subheader("Number of Bathrooms")
     bathrooms = st.number_input("Number of Bathrooms", min_value=0, max_value=10, value=1, step=1)
 
-    # select explainability method
+    # select explainability method as a multi-select
     # st.sidebar.subheader("Select Explainability Method")
-    explainability_method = st.selectbox("Select Explainability Method", ["SHAP-1", "SHAP-2", "DiCE"])
+    explainability_method = st.multiselect("Select Explainability Method", ["SHAP-1", "SHAP-2", "DICE"], ["SHAP-1", "SHAP-2"])
 
     # submit button
     # st.sidebar.subheader("Generate text")
@@ -168,9 +168,16 @@ try:
 except:
     y_test = [100,2,1,4.1,4.4,4.1,3.9]
 
-if explainability_method == "SHAP-1":
+# if explainability_method == "SHAP-1":
+#     predictXtest(y_test, 'W')
+# elif explainability_method == "SHAP-2":
+#     predictXtest(y_test, 'F')
+# elif explainability_method == "DiCE":
+#     getCounterfacualUpgr(y_test)
+
+if "SHAP-1" in explainability_method:
     predictXtest(y_test, 'W')
-elif explainability_method == "SHAP-2":
+if "SHAP-2" in explainability_method:
     predictXtest(y_test, 'F')
-elif explainability_method == "DiCE":
+if "DiCE" in explainability_method:
     getCounterfacualUpgr(y_test)
