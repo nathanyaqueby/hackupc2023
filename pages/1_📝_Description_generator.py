@@ -60,7 +60,7 @@ st.sidebar.image("images/logo.png", use_column_width=True)
 if submit:
     with st.spinner("Generating text..."):
 
-        col3, col4 = st.beta_columns([4, 6])
+        col3, col4 = st.beta_columns([7, 3])
 
         with col3:
             st.markdown(f"House size: `{house_size}`")
