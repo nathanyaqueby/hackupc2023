@@ -191,5 +191,11 @@ if "SHAP-1" in explainability_method:
 if "SHAP-2" in explainability_method:
     predictXtest(y_test, 'F')
 if "DICE" in explainability_method:
-    ctf = getCounterfacualUpgr(y_test)
-    st.dataframe(ctf)
+    # load the features.csv file
+    features = pd.read_csv("features.csv")
+    st.markdown("## Original features")
+    st.dataframe(features)
+    st.markdown("## Counterfactual features")
+    # load the counterfactuals.csv file
+    counterfactuals = pd.read_csv("counterfactuals.csv")
+    st.dataframe(counterfactuals)
