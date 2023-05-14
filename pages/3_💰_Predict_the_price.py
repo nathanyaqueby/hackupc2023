@@ -115,12 +115,14 @@ explainer = shap.Explainer(model, x_train)
 shap_values = explainer(x_test)
 
 #############
-def predictXtest(num_to_predict,typePlot ='F'):
-    print("The real price is ", y_test.iloc[num_to_predict])
+def predictXtest(listFeatures,typePlot ='F'):
+    # print("The real price is ", y_test.iloc[num_to_predict])
+    features = pd.DataFrame([listFeatures],columns=x_test.columns)
+    shap_values = explainer(features)
     if typePlot=='W':
-       st_shap(shap.plots.waterfall(shap_values[num_to_predict]), height=300)
+       st_shap(shap.plots.waterfall(shap_values), height=300)
     else: 
-        st_shap(shap.plots.force(shap_values[num_to_predict]), height=300)
+        st_shap(shap.plots.force(shap_values), height=300)
 
 # predictXtest(2)
 
