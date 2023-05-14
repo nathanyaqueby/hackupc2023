@@ -154,7 +154,7 @@ def getCounterfacualUpgr(list_of_features):
     exp_dice = exp.generate_counterfactuals(features, total_CFs=2, 
                                             desired_range=[pred,pred+100_000],features_to_vary=features_to_analize)
 
-    return exp_dice.visualize_as_dataframe()
+    return exp_dice
 
 input_vals = [house_size, bedrooms, bathrooms]
 
@@ -169,4 +169,4 @@ if explainability_method == "SHAP-1":
 elif explainability_method == "SHAP-2":
     predictXtest(y_test, 'F')
 elif explainability_method == "DiCE":
-    st.write(getCounterfacualUpgr(y_test))
+    getCounterfacualUpgr(y_test)
