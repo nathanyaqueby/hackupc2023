@@ -147,8 +147,12 @@ def getCounterfacualUpgrFromTest(x):
     query_instances_housing = x_test[x:x+1]
     exp_dice = exp.generate_counterfactuals(query_instances_housing, total_CFs=2, 
                                             desired_range=[pred,pred+100_000],features_to_vary=features_to_analize)
+    exp_dice.visualize_as_dataframe()
+    exp_dice.cf_examples_list[0].final_cfs_df.to_csv(path_or_buf='counterfactuals.csv', index=False)
 
-    return exp_dice
+    # load the counterfactuals
+    counterfactuals = pd.read_csv("counterfactuals.csv")
+    return counterfactuals
     
 def getCounterfacualUpgr(list_of_features):
     features = pd.DataFrame([list_of_features],columns=x_test.columns)
@@ -158,7 +162,12 @@ def getCounterfacualUpgr(list_of_features):
     exp_dice = exp.generate_counterfactuals(features, total_CFs=2, 
                                             desired_range=[pred,pred+100_000],features_to_vary=features_to_analize)
 
-    return exp_dice
+    exp_dice.visualize_as_dataframe()
+    exp_dice.cf_examples_list[0].final_cfs_df.to_csv(path_or_buf='counterfactuals.csv', index=False)
+
+    # load the counterfactuals
+    counterfactuals = pd.read_csv("counterfactuals.csv")
+    return counterfactuals
 
 input_vals = [house_size, bedrooms, bathrooms]
 
@@ -182,4 +191,5 @@ if "SHAP-1" in explainability_method:
 if "SHAP-2" in explainability_method:
     predictXtest(y_test, 'F')
 if "DiCE" in explainability_method:
-    getCounterfacualUpgr(y_test)
+    ctf = getCounterfacualUpgr(y_test)
+    st.dataframe(ctf)
