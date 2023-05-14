@@ -60,7 +60,7 @@ st.sidebar.image("images/logo.png", use_column_width=True)
 if submit:
     with st.spinner("Generating text..."):
 
-        col3, col4 = st.beta_columns(2)
+        col3, col4 = st.beta_columns([4, 6])
 
         with col3:
             st.markdown(f"House size: `{house_size}`")
@@ -70,14 +70,25 @@ if submit:
 
             openai.api_key = st.secrets["API_KEY"]
 
-            prompt = f"Generate a catchy title and a minimum 300-word real estate description based on the following features:\n\nHouse size: {house_size} m2\nNumber of bedrooms: {bedrooms}\nNumber of bathrooms: {bathrooms}\n\nImage(s): {uploaded_file}"
+            prompt1 = f"Generate a catchy title based on the following features:\n\nHouse size: {house_size} m2\nNumber of bedrooms: {bedrooms}\nNumber of bathrooms: {bathrooms}\n\nImage(s): {uploaded_file}"
+            prompt2 = f"Generate a minimum 300-word real estate description based on the following features:\n\nHouse size: {house_size} m2\nNumber of bedrooms: {bedrooms}\nNumber of bathrooms: {bathrooms}\n\nImage(s): {uploaded_file}"
             # st.write(f"GPT-3 Prompt: {prompt}")
 
             st.markdown("---")
 
-            response = openai.Completion.create(
+            response1 = openai.Completion.create(
                 engine="text-davinci-002",
-                prompt=prompt,
+                prompt=prompt1,
+                temperature=0.8,
+                max_tokens=1000,
+                top_p=1,
+                frequency_penalty=0,
+                presence_penalty=0
+            )
+
+            response2 = openai.Completion.create(
+                engine="text-davinci-002",
+                prompt=prompt2,
                 temperature=0.8,
                 max_tokens=1000,
                 top_p=1,
@@ -85,9 +96,11 @@ if submit:
                 presence_penalty=0
             )
             #st.write(f"GPT-3 Response\n{response}")
-            text_result = response['choices'][0]["text"]
+            title_result = response1['choices'][0]["text"]
+            text_result = response2['choices'][0]["text"]
 
             st.markdown("## Generated Text")
+            st.markdown(f"### {title_result}")
             st.write(f"{text_result}")
 
             client = Client("https://tweakdoor-stabilityai-stable-diffusion-2-1.hf.space/")
