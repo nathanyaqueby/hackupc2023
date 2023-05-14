@@ -63,7 +63,7 @@ if submit:
         col3, col4 = st.beta_columns(2)
 
         with col3:
-            st.write("House size: " + str(house_size))
+            st.markdown(f"House size: `{house_size}`")
             st.write("Number of bedrooms: " + str(bedrooms))
             st.write("Number of bathrooms: " + str(bathrooms))
             st.write("Image(s): " + str(uploaded_file))
@@ -87,14 +87,15 @@ if submit:
             #st.write(f"GPT-3 Response\n{response}")
             text_result = response['choices'][0]["text"]
 
+            st.markdown("## Generated Text")
+            st.write(f"{text_result}")
+
+            client = Client("https://tweakdoor-stabilityai-stable-diffusion-2-1.hf.space/")
+            result = client.predict(
+                            "Howdy!",	# str representing input in 'Input' Textbox component
+                            api_name="/predict"
+            )
+            print(result)
+
         with col4:
             st.image(uploaded_file, use_column_width=True)
-    st.markdown("## Generated Text")
-    st.write(f"{text_result}")
-
-    client = Client("https://tweakdoor-stabilityai-stable-diffusion-2-1.hf.space/")
-    result = client.predict(
-                    "Howdy!",	# str representing input in 'Input' Textbox component
-                    api_name="/predict"
-    )
-    print(result)
