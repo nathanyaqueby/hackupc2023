@@ -111,4 +111,4 @@ if submit:
             print(result)
 
         with col4:
-            st.image("images/test_img.jpg", use_column_width=True)
+            st.image("images/test_img.jpg", width=300)
