@@ -7,9 +7,7 @@ We also add an explainability method SHAP to explain the model's prediction.
 import streamlit as st
 import pandas as pd
 from streamlit_shap import st_shap
-
 import shap
-shap.initjs()
 from sklearn.model_selection import train_test_split
 
 # import ridge
