@@ -7,7 +7,11 @@ import leafmap.foliumap as leafmap
 st.set_page_config(page_title="MLheads",
                    page_icon="🤯",
                    layout="wide",
-                   initial_sidebar_state="expanded")
+                   initial_sidebar_state="expanded",
+                   menu_items={
+                       'Get help': 'https://github.com/diaa-shalaby/HackUPC2023',
+                       'Report a bug': "https://github.com/diaa-shalaby/HackUPC2023",
+                    })
 
 st.title("MLheads 🏠")
 

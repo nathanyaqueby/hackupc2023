@@ -8,7 +8,11 @@ import pydeck as pdk
 st.set_page_config(page_title="MLheads",
                    page_icon="🤯",
                    layout="wide",
-                   initial_sidebar_state="expanded")
+                   initial_sidebar_state="expanded",
+                   menu_items={
+                       'Get help': 'https://github.com/diaa-shalaby/HackUPC2023',
+                       'Report a bug': "https://github.com/diaa-shalaby/HackUPC2023",
+                    })
 
 st.title("Real estate price range heatmap 🔥")
 # st.markdown("Upload pictures of a property and our AI model will generate the perfect description based on the features in the images")
