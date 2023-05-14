@@ -120,7 +120,7 @@ def predictXtest(listFeatures,typePlot ='F'):
     features = pd.DataFrame([listFeatures],columns=x_test.columns)
     shap_values = explainer(features)
     if typePlot=='W':
-       st_shap(shap.plots.waterfall(shap_values), height=300)
+       st_shap(shap.plots.waterfall(shap_values[0]), height=300)
     else: 
         st_shap(shap.plots.force(shap_values), height=300)
 
