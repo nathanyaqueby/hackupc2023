@@ -109,12 +109,12 @@ shap_values = explainer(x_test)
 def predictXtest(num_to_predict,typePlot ='F'):
     print("The real price is ", y_test.iloc[num_to_predict])
     if typePlot=='W':
-       st_shap(shap.plots.waterfall(shap_values[num_to_predict]), height=300)
+       st_shap(shap.plots.waterfall(shap_values[num_to_predict]), height=300, width=600)
     else: 
-        st_shap(shap.plots.force(shap_values[num_to_predict]), height=300)
+        st_shap(shap.plots.force(shap_values[num_to_predict]), height=300, width=600)
 
 predictXtest(2, 'W')
-predictXtest(4)
+predictXtest(2)
 
 def getingPlotPrediction(listFeatures):
     features = pd.DataFrame([listFeatures],columns=x_test.columns)
