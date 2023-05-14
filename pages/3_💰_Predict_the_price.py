@@ -13,6 +13,9 @@ shap.initjs()
 # import ridge
 from sklearn.linear_model import Ridge
 
+import dice_ml
+from dice_ml.utils import helpers
+
 st.set_page_config(page_title="MLheads",
                    page_icon="🤯",
                    layout="wide",
@@ -125,3 +128,31 @@ def getingPlotPrediction(listFeatures):
     st_shap(shap.plots.force(shap_values), height=300)
 
 # getingPlotPrediction([100,2,2,3,5,4,6])
+
+features_to_analize= ['propRange','kitchenRange','bathroomRange','interiorRange']
+d = dice_ml.Data(dataframe=df,continuous_features=list(x_test.columns), outcome_name='price')
+    # We provide the type of model as a parameter (model_type)
+m = dice_ml.Model(model=model, backend="sklearn", model_type='regressor')
+
+
+def getCounterfacualUpgrFromTest(x):
+    exp = dice_ml.Dice(d, m, method="genetic")
+    pred = y_test.iloc[x]
+    # Multiple queries can be given as input at once
+    query_instances_housing = x_test[x:x+1]
+    exp_dice = exp.generate_counterfactuals(query_instances_housing, total_CFs=2, 
+                                            desired_range=[pred,pred+100_000],features_to_vary=features_to_analize)
+
+    exp_dice.visualize_as_dataframe()
+    
+def getCounterfacualUpgr(list_of_features):
+    features = pd.DataFrame([list_of_features],columns=x_test.columns)
+    exp = dice_ml.Dice(d, m, method="genetic")
+    pred = model.predict(features)[0]
+    # Multiple queries can be given as input at once
+    exp_dice = exp.generate_counterfactuals(features, total_CFs=2, 
+                                            desired_range=[pred,pred+100_000],features_to_vary=features_to_analize)
+
+    exp_dice.visualize_as_dataframe()
+
+getCounterfacualUpgr([100,2,2,3,5,4,6])
