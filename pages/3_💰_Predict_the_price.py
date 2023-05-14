@@ -174,6 +174,8 @@ input_vals = [house_size, bedrooms, bathrooms]
 # get the first row of the dataframe that matches the input values
 try:
     y_test = df[(df['square_meters'] == house_size) & (df['bedrooms'] == bedrooms) & (df['bathrooms'] == bathrooms)]
+    # remove the first column
+    y_test = y_test.drop(y_test.columns[0], axis=1)
     # get the first row in the dataframe
     y_test = y_test.iloc[0]
 except:

@@ -12,7 +12,7 @@ st.set_page_config(page_title="MLheads",
                        'Report a bug': "https://github.com/diaa-shalaby/HackUPC2023",
                     })
 
-st.title("Real Estate Post Generator 🏠")
+st.title("Real estate post generator 🏠")
 st.markdown("Upload pictures of a property and our AI model will generate the perfect description based on the features in the images")
 
 st.markdown("""
