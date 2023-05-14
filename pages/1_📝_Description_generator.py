@@ -100,7 +100,8 @@ if submit:
             text_result = response2['choices'][0]["text"]
 
             st.markdown("Generated text:")
-            st.markdown("## "+title_result)
+
+            st.markdown(f"## {title_result}")
             st.write(f"{text_result}")
 
             client = Client("https://tweakdoor-stabilityai-stable-diffusion-2-1.hf.space/")
