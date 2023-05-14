@@ -93,8 +93,12 @@ x_train, x_test, y_train, y_test = train_test_split(x,y, test_size= 0.2)
 for i in df.columns:
     df[i] = df[i].astype(float)
 
+# display x_train and y_train
+st.write("x_train", x_train)
+st.write("y_train", y_train)
+
 # use Ridge regression to predict the price
-model = Ridge(alpha=10)
+model = Ridge(alpha=10, random_state=42)
 model.fit(x_train,y_train)
 y_pred = model.predict(x_test)
 
