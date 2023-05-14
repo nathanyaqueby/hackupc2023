@@ -64,9 +64,9 @@ if submit:
 
         with col3:
             st.markdown(f"House size: `{house_size}`")
-            st.write("Number of bedrooms: " + str(bedrooms))
-            st.write("Number of bathrooms: " + str(bathrooms))
-            st.write("Image(s): " + str(uploaded_file))
+            st.markdown(f"Number of bedrooms: `{bedrooms}`")
+            st.markdown(f"Number of bathrooms: `{bathrooms}`")
+            st.markdown(f"Image(s): `{uploaded_file}`")
 
             openai.api_key = st.secrets["API_KEY"]
 
@@ -98,4 +98,4 @@ if submit:
             print(result)
 
         with col4:
-            st.image(uploaded_file, use_column_width=True)
+            st.image("images/test_img.jpg", use_column_width=True)
