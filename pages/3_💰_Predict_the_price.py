@@ -116,9 +116,9 @@ def predictXtest(num_to_predict,typePlot ='F'):
 predictXtest(2, 'W')
 predictXtest(4)
 
-def getingPlotPrediction(listFeatures):
-    features = pd.DataFrame([listFeatures],columns=x_test.columns)
-    shap_values = explainer(features)
-    st_shap(shap.plots.force(shap_values), height=300)
+# def getingPlotPrediction(listFeatures):
+#     features = pd.DataFrame([listFeatures],columns=x_test.columns)
+#     shap_values = explainer(features)
+#     st_shap(shap.plots.force(shap_values), height=300)
 
-getingPlotPrediction([100,2,2,3,5,4,6])
+# getingPlotPrediction([100,2,2,3,5,4,6])
