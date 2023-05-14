@@ -193,9 +193,11 @@ if "SHAP-2" in explainability_method:
 if "DICE" in explainability_method:
     # load the features.csv file
     features = pd.read_csv("features.csv")
+    # remove the first column
+    features = features.drop(features.columns[0], axis=1)
     st.markdown("## Original features")
     st.dataframe(features)
-    st.markdown("## Counterfactual features")
+    st.markdown("## Recommended price range based on counterfactual features")
     # load the counterfactuals.csv file
     counterfactuals = pd.read_csv("counterfactuals.csv")
     st.dataframe(counterfactuals)
