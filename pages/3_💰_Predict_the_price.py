@@ -114,6 +114,9 @@ def predictXtest(num_to_predict,typePlot ='F'):
         st_shap(shap.plots.force(shap_values[num_to_predict]), height=300, width=600)
 
 predictXtest(2, 'W')
+
+st.markdown("---")
+
 predictXtest(2)
 
 def getingPlotPrediction(listFeatures):
