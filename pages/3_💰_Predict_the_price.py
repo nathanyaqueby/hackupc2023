@@ -190,6 +190,6 @@ if "SHAP-1" in explainability_method:
     predictXtest(y_test, 'W')
 if "SHAP-2" in explainability_method:
     predictXtest(y_test, 'F')
-if "DiCE" in explainability_method:
+if "DICE" in explainability_method:
     ctf = getCounterfacualUpgr(y_test)
     st.dataframe(ctf)
